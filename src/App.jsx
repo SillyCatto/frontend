@@ -1,7 +1,8 @@
 export default function App() {
   return (
-    <h1 className="flex justify-center content-center  text-3xl font-bold">
-      Hello world!
-    </h1>
+    <div className="">
+      <h1 className="text-3xl font-bold">Hello world!</h1>
+      <button className="btn btn-primary rounded-full">Button</button>
+    </div>
   );
 }
