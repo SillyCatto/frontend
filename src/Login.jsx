@@ -7,10 +7,15 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post("http://localhost:3000/login", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "http://localhost:3000/login",
+        {
+          email,
+          password,
+        },
+        { withCredentials: true },
+      );
+      console.log(res);
     } catch (err) {
       console.error(err);
     }
