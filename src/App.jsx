@@ -1,29 +1,19 @@
-export default function App() {
-  const showModal = () => {
-    const modal = document.getElementById("my_modal_1");
-    if (modal) {
-      modal.showModal();
-    }
-  };
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Body from "./Body";
+import Login from "./Login";
+import Profile from "./Profile.jsx";
 
+export default function App() {
   return (
-    <div>
-      <button className="btn btn-primary" onClick={showModal}>
-        Click Me!
-      </button>
-      <dialog id="my_modal_1" className="modal">
-        <div className="modal-box">
-          <h3 className="text-lg font-bold">Hello!</h3>
-          <p className="py-4">
-            Press ESC key or click the button below to close
-          </p>
-          <div className="modal-action">
-            <form method="dialog">
-              <button className="btn">Close</button>
-            </form>
-          </div>
-        </div>
-      </dialog>
-    </div>
+    <>
+      <BrowserRouter basename="/">
+        <Routes>
+          <Route path="/" element={<Body />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/profile" element={<Profile />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
