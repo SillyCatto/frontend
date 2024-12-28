@@ -11,9 +11,10 @@ export default function App() {
       <Provider store={appStore}>
         <BrowserRouter basename="/">
           <Routes>
-            <Route path="/" element={<Body />}>
-              <Route path="/profile" element={<Profile />} />
+            <Route path="/user" element={<Body />}>
+              <Route path="profile" element={<Profile />} />
             </Route>
+
             <Route path="/login" element={<Login />} />
           </Routes>
         </BrowserRouter>

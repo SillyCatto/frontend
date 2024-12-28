@@ -1,10 +1,15 @@
 import { useState } from "react";
 import axios from "axios";
 import { Typewriter } from "react-simple-typewriter";
+import { useDispatch } from "react-redux";
+import { addUser } from "./utils/userSlice.js";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("cat@gmail.com");
+  const [password, setPassword] = useState("Cat@123");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
@@ -16,7 +21,8 @@ export default function Login() {
         },
         { withCredentials: true },
       );
-      console.log(res);
+      dispatch(addUser(res.data.user));
+      navigate("/user/profile");
     } catch (err) {
       console.error(err);
     }
@@ -24,6 +30,7 @@ export default function Login() {
 
   return (
     <div className="flex flex-row flex-wrap justify-center gap-x-32">
+      {/*---------------------------------------------------------------*/}
       <div className="flex flex-col justify-center h-screen gap-4">
         <p className="font-firasans font-bold text-5xl">DevBuddy 🧑‍💻</p>
         <p className="font-firasans text-2xl font-semibold">
@@ -41,6 +48,8 @@ export default function Login() {
           />
         </div>
       </div>
+      {/*---------------------------------------------------------------*/}
+
       <div className="flex items-center justify-center h-screen">
         <div className="card glass bg-base-100 w-96 shadow-xl">
           <div className="card-body items-center">
