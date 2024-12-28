@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { Typewriter } from "react-simple-typewriter";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -24,20 +25,25 @@ export default function Login() {
   return (
     <div className="flex flex-row flex-wrap justify-center gap-x-32">
       <div className="flex flex-col justify-center h-screen gap-4">
-        <p className="text-5xl font-bold">DevTinder 🧑‍💻</p>
-        <p className="text-2xl font-medium">
-          A place to connect for all Developers 💖
+        <p className="font-firasans font-bold text-5xl">DevBuddy 🧑‍💻</p>
+        <p className="font-firasans text-2xl font-semibold">
+          A place to connect for all Developers 🔥
         </p>
-        <div className="flex flex-row gap-5 my-4">
-          <p>Find</p>
-          <p>Connect</p>
-          <p>Make friends</p>
-          <p>Develop</p>
+        <div className="flex flex-row gap-5 my-4 font-source_code_pro font-medium text-xl">
+          <Typewriter
+            words={["Find", "Connect", "Make friends", "Develop </>"]}
+            loop={Infinity} // Infinite loop
+            cursor
+            cursorStyle="_"
+            typeSpeed={100} // Typing speed
+            deleteSpeed={50} // Deleting speed
+            delaySpeed={1500} // Delay between words
+          />
         </div>
       </div>
       <div className="flex items-center justify-center h-screen">
         <div className="card glass bg-base-100 w-96 shadow-xl">
-          <div className="card-body">
+          <div className="card-body items-center">
             <div className="flex items-center flex-col gap-3 m-3">
               <label className="input input-bordered flex items-center gap-2">
                 <svg
@@ -51,7 +57,7 @@ export default function Login() {
                 </svg>
                 <input
                   type="text"
-                  className="grow"
+                  className="grow font-source_code_pro"
                   placeholder="Email"
                   value={email}
                   onChange={(event) => {
@@ -75,7 +81,7 @@ export default function Login() {
                 </svg>
                 <input
                   type="password"
-                  className="grow"
+                  className="grow font-source_code_pro"
                   placeholder="Password"
                   value={password}
                   onChange={(event) => {
@@ -87,11 +93,17 @@ export default function Login() {
 
             <div className="card-actions justify-center">
               <button
-                className="btn btn-primary rounded-full w-32"
+                className="btn btn-primary rounded-full w-32 font-bold font-firasans"
                 onClick={handleLogin}
               >
                 Login
               </button>
+            </div>
+            <div className="flex flex-col items-center">
+              <p className="font-source_code_pro text-sm mt-5">
+                Dont have an account?
+              </p>
+              <p className="font-source_code_pro text-sm underline">Signup</p>
             </div>
           </div>
         </div>
