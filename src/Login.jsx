@@ -6,12 +6,10 @@ import { addUser } from "./utils/userSlice.js";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const [email, setEmail] = useState("cat@gmail.com");
-  const [password, setPassword] = useState("Cat@123");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleLogin = async (email, password) => {
     try {
       const res = await axios.post(
         "http://localhost:3000/login",
@@ -28,11 +26,10 @@ export default function Login() {
     }
   };
 
-  return (
-    <div className="flex flex-row flex-wrap justify-center gap-x-32">
-      {/*---------------------------------------------------------------*/}
+  function Logo() {
+    return (
       <div className="flex flex-col justify-center h-screen gap-4">
-        <p className="font-firasans font-bold text-5xl">DevBuddy 🧑‍💻</p>
+        <p className="font-firasans font-bold text-4xl">DevBuddy 🧑‍💻</p>
         <p className="font-firasans text-2xl font-semibold">
           A place to connect for all Developers 🔥
         </p>
@@ -48,8 +45,13 @@ export default function Login() {
           />
         </div>
       </div>
-      {/*---------------------------------------------------------------*/}
+    );
+  }
 
+  function LoginForm({ onLogin }) {
+    const [email, setEmail] = useState("cat@gmail.com");
+    const [password, setPassword] = useState("Cat@123");
+    return (
       <div className="flex items-center justify-center h-screen">
         <div className="card glass bg-base-100 w-96 shadow-xl">
           <div className="card-body items-center">
@@ -103,7 +105,7 @@ export default function Login() {
             <div className="card-actions justify-center">
               <button
                 className="btn btn-primary rounded-full w-32 font-bold font-firasans"
-                onClick={handleLogin}
+                onClick={() => onLogin(email, password)}
               >
                 Login
               </button>
@@ -116,6 +118,20 @@ export default function Login() {
             </div>
           </div>
         </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col lg:flex-row w-full h-screen">
+      <div className="flex flex-col justify-center items-center lg:w-1/2 w-full h-1/2 lg:h-full">
+        <Logo />
+      </div>
+
+      <div className="hidden divider"></div>
+
+      <div className="flex justify-center items-center lg:w-1/2 w-full h-1/2 lg:h-full">
+        <LoginForm onLogin={handleLogin} />
       </div>
     </div>
   );

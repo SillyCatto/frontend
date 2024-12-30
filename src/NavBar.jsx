@@ -15,50 +15,55 @@ export default function NavBar() {
     }
   };
 
-  return (
-    <div className="navbar bg-base-300 fixed shadow-md shadow-gray-400 z-[1000]">
-      <div className="flex-1">
-        <p className="font-firasans text-2xl font-bold p-2">DevBuddy 🧑‍💻</p>
+  function WelcomeUser() {
+    return (
+      <div className="font-source_code_pro font-semibold">
+        <p>Welcome, {user.name}!</p>
       </div>
+    );
+  }
 
-      <div className="flex-none gap-2">
-        {/* show pfp only when user is logged in*/}
-        {user && (
-          <div className="flex flex-row items-center ">
-            <div className="font-source_code_pro font-semibold">
-              <p>Welcome, {user.name}!</p>
-            </div>
-            <div className="dropdown dropdown-end mx-5">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
-                <div className="w-10 rounded-full">
-                  <img alt="Profile picture" src={user.photoURL} />
-                </div>
+  function ProfileWithDropdown() {
+    return (
+      user && (
+        <div className="flex flex-row items-center ">
+          <div className="dropdown dropdown-end mx-5">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 rounded-full">
+                <img alt="Profile picture" src={user.photoURL} />
               </div>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-              >
-                <li>
-                  <a className="justify-between">
-                    Profile
-                    <span className="badge">New</span>
-                  </a>
-                </li>
-                <li>
-                  <a>Settings</a>
-                </li>
-                <li>
-                  <a onClick={handleLogout}>Logout</a>
-                </li>
-              </ul>
             </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            >
+              <li>
+                <a className="justify-between">Profile</a>
+              </li>
+              <li>
+                <a>Settings</a>
+              </li>
+              <li>
+                <a onClick={handleLogout}>Logout</a>
+              </li>
+            </ul>
           </div>
-        )}
+        </div>
+      )
+    );
+  }
+
+  return (
+    <div className="navbar bg-base-100 fixed shadow-lg z-[1000] p-0">
+      <div className="flex-1 pl-2">
+        <p className="font-firasans text-xl font-bold p-2">DevBuddy 🧑‍💻</p>
       </div>
+      <WelcomeUser />
+      <ProfileWithDropdown />
     </div>
   );
 }
