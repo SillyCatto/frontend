@@ -2,8 +2,9 @@ import { useState } from "react";
 import axios from "axios";
 import { Typewriter } from "react-simple-typewriter";
 import { useDispatch } from "react-redux";
-import { addUser } from "./utils/userSlice.js";
+import { addUser } from "../utils/userSlice.js";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../utils/constants.js";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ export default function Login() {
   const handleLogin = async (email, password) => {
     try {
       const res = await axios.post(
-        "http://localhost:3000/login",
+        BASE_URL + "/login",
         {
           email,
           password,
@@ -20,7 +21,7 @@ export default function Login() {
         { withCredentials: true },
       );
       dispatch(addUser(res.data.user));
-      navigate("/user/profile");
+      navigate("/user/feed");
     } catch (err) {
       console.error(err);
     }

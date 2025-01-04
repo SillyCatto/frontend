@@ -1,9 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Body from "./Body";
-import Login from "./Login";
-import Profile from "./Profile.jsx";
+import Body from "./components/Body.jsx";
+import Login from "./components/Login.jsx";
+import Profile from "./components/Profile.jsx";
 import { Provider } from "react-redux";
 import { appStore } from "./utils/store.js";
+import Feed from "./components/Feed.jsx";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
           <Routes>
             <Route path="/user" element={<Body />}>
               <Route path="profile" element={<Profile />} />
+              <Route path="feed" element={<Feed />} />
             </Route>
 
             <Route path="/login" element={<Login />} />
