@@ -30,7 +30,7 @@ export default function Profile() {
 
   if (!profile) {
     return (
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex items-center justify-center h-screen font-source_code_pro text-xl">
         <p>Loading...</p>
       </div>
     );

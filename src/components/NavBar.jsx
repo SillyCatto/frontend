@@ -29,9 +29,11 @@ export default function NavBar() {
 
   function WelcomeUser() {
     return (
-      <div className="font-source_code_pro font-semibold">
-        <p>Welcome, {user.name}!</p>
-      </div>
+      user && (
+        <div className="font-source_code_pro font-semibold">
+          <p>Welcome, {user.name}!</p>
+        </div>
+      )
     );
   }
 
