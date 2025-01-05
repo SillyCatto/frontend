@@ -1,4 +1,4 @@
-const ErrorPage = () => {
+const Error = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <div className="flex p-10">
@@ -11,4 +11,4 @@ const ErrorPage = () => {
   );
 };
 
-export default ErrorPage;
+export default Error;

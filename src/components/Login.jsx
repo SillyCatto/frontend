@@ -29,7 +29,7 @@ export default function Login() {
 
   function Logo() {
     return (
-      <div className="flex flex-col justify-center h-screen gap-4">
+      <div className="flex flex-col justify-center h-screen gap-4 cursor-default">
         <p className="font-firasans font-bold text-4xl">DevBuddy 🧑‍💻</p>
         <p className="font-firasans text-2xl font-semibold">
           A place to connect for all Developers 🔥
@@ -37,12 +37,12 @@ export default function Login() {
         <div className="flex flex-row gap-5 my-4 font-source_code_pro font-medium text-xl">
           <Typewriter
             words={["Find", "Connect", "Make friends", "Develop </>"]}
-            loop={Infinity} // Infinite loop
+            loop={Infinity}
             cursor
             cursorStyle="_"
-            typeSpeed={100} // Typing speed
-            deleteSpeed={50} // Deleting speed
-            delaySpeed={1500} // Delay between words
+            typeSpeed={100}
+            deleteSpeed={50}
+            delaySpeed={1500}
           />
         </div>
       </div>
@@ -115,7 +115,9 @@ export default function Login() {
               <p className="font-source_code_pro text-sm mt-5">
                 Dont have an account?
               </p>
-              <p className="font-source_code_pro text-sm underline">Signup</p>
+              <p className="font-source_code_pro text-sm underline cursor-pointer">
+                Signup
+              </p>
             </div>
           </div>
         </div>

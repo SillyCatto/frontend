@@ -5,7 +5,8 @@ import Profile from "./components/Profile.jsx";
 import { Provider } from "react-redux";
 import { appStore } from "./utils/store.js";
 import Feed from "./components/Feed.jsx";
-import ErrorPage from "./components/errorPage.jsx";
+import Error from "./components/Error.jsx";
+import Signup from "./components/Signup.jsx";
 
 export default function App() {
   return (
@@ -19,7 +20,8 @@ export default function App() {
             </Route>
 
             <Route path="/login" element={<Login />} />
-            <Route path="/error" element={<ErrorPage />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/error" element={<Error />} />
           </Routes>
         </BrowserRouter>
       </Provider>
