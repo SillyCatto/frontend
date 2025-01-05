@@ -13,6 +13,6 @@ export default {
   },
   plugins: [daisyui],
   daisyui: {
-    themes: ["retro", "dracula"],
+    themes: ["retro"],
   },
 };

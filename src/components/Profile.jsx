@@ -1,32 +1,39 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { BASE_URL } from "../utils/constants.js";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Profile() {
   const [profile, setProfile] = useState(null);
-  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const userData = useSelector((store) => store.user);
+
+  const fetchProfile = async () => {
+    if (userData) {
+      setProfile(userData);
+      return;
+    }
+
+    try {
+      const res = await axios.get(BASE_URL + "/user/profile", {
+        withCredentials: true,
+      });
+      setProfile(res.data.profile);
+    } catch (err) {
+      if (err.status === 401) {
+        navigate("/login");
+      } else {
+        navigate("/error");
+      }
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const res = await axios.get("http://localhost:3000/user/profile", {
-          withCredentials: true,
-        });
-        setProfile(res.data.profile);
-      } catch (err) {
-        setError(err.response?.data?.error || "Failed to load profile");
-      }
-    };
-
     fetchProfile();
   }, []);
-
-  if (error) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <p className="text-red-500">{error}</p>
-      </div>
-    );
-  }
 
   if (!profile) {
     return (

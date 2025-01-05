@@ -1,20 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { removeUser } from "../utils/userSlice.js";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function NavBar() {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const redirectToFeed = () => {
-    navigate("/user/feed");
-  };
-
-  const redirectToProfile = () => {
-    navigate("/user/profile");
-  };
 
   const handleLogout = async () => {
     try {
@@ -56,7 +48,7 @@ export default function NavBar() {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a onClick={redirectToProfile}>Profile</a>
+                <Link to="/user/profile">Profile</Link>
               </li>
               <li>
                 <a>Settings</a>
@@ -74,11 +66,8 @@ export default function NavBar() {
   return (
     <div className="navbar bg-base-100 fixed shadow-lg z-[1000] p-0">
       <div className="flex-1 pl-2">
-        <p
-          className="font-firasans text-xl font-bold p-2 cursor-pointer"
-          onClick={redirectToFeed}
-        >
-          DevBuddy 🧑‍💻
+        <p className="font-firasans text-xl font-bold p-2 cursor-pointer">
+          <Link to="/user/feed">DevBuddy 🧑‍💻</Link>
         </p>
       </div>
       <WelcomeUser />
