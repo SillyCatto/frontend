@@ -9,6 +9,7 @@ import { BASE_URL } from "../utils/constants.js";
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const handleLogin = async (email, password) => {
     try {
@@ -23,7 +24,9 @@ export default function Login() {
       dispatch(addUser(res.data.user));
       navigate("/user/feed");
     } catch (err) {
-      console.error(err);
+      if (err) {
+        setError(err?.response?.data?.error || "Something went wrong :(");
+      }
     }
   };
 
@@ -103,7 +106,10 @@ export default function Login() {
               </label>
             </div>
 
-            <div className="card-actions justify-center">
+            <div className="card-actions flex flex-col justify-center items-center">
+              <div className="font-source_code_pro text-sm font-medium text-red-600 flex flex-col items-center">
+                <p>{error}</p>
+              </div>
               <button
                 className="btn btn-primary rounded-full w-32 font-bold font-firasans"
                 onClick={() => onLogin(email, password)}
