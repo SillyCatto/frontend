@@ -3,6 +3,7 @@ import axios from "axios";
 import { removeUser } from "../utils/userSlice.js";
 import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants.js";
+import { removeFeed } from "../utils/feedSlice.js";
 
 export default function NavBar() {
   const user = useSelector((store) => store.user);
@@ -19,6 +20,7 @@ export default function NavBar() {
         },
       );
       dispatch(removeUser());
+      dispatch(removeFeed());
 
       navigate("/login");
     } catch (err) {

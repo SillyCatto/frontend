@@ -1,39 +1,7 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { BASE_URL } from "../utils/constants.js";
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export default function Profile() {
-  const [profile, setProfile] = useState(null);
-  const navigate = useNavigate();
-
-  const userData = useSelector((store) => store.user);
-
-  const fetchProfile = async () => {
-    if (userData) {
-      setProfile(userData);
-      return;
-    }
-
-    try {
-      const res = await axios.get(BASE_URL + "/user/profile", {
-        withCredentials: true,
-      });
-      setProfile(res.data.profile);
-    } catch (err) {
-      if (err.status === 401) {
-        navigate("/login");
-      } else {
-        navigate("/error");
-      }
-      console.error(err);
-    }
-  };
-
-  useEffect(() => {
-    fetchProfile();
-  }, []);
+  const profile = useSelector((store) => store.user);
 
   if (!profile) {
     return (
